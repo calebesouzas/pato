@@ -1,18 +1,33 @@
 #include <stdio.h>
-#include <string.h>
-#include "help.h"
+// #include <string.h>
+#include "commands/help.h"
 
 int main(int argc, char *argv[]) {
     char version[] = "0.0.1-dev";
     FILE *p_round_file = fopen(argv[1], "r");
     char buffer[1024] = {0};
-
+    /* Here we check if the first argument for the program
+     * is a file, else we'll check if it's a command. */
     if (p_round_file == NULL) {
 	if (argc == 1) {
 	    printf("Round Lang\tversion %s\n", version);
 	    return 0;
-	} else if (strncmp(argv[1], "help", 4) == 0) {
-	    usage_guide();
+	} else {
+	    /* Handling commands. Those are:
+	    * help
+	    * run
+	    * build
+	    * new
+	    * compile
+	    * */
+	    switch (argv[1][0]) {
+		case 'h': 
+		    print_usage_guide();
+		    break;
+
+		default:
+		    printf("The command '%s' is not a valid command\n", argv[1]);
+	    }
 	    return 0;
 	}
 	// else:

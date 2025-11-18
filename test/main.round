@@ -1,2 +1,4 @@
-variable: int = 15
-print(variable)
+mensagem: string = "One 8.5"
+print(mensagem)
+outra_mensagem: string = "Oi, beleza?\n"
+print(outra_mensagem)

@@ -1,6 +1,6 @@
 # This file was generated (almost entirely) by Grok (an "AI")
 # I won't use code from AI, only get little helps from them if needed
-SHELL := /data/data/com.termux/files/usr/bin/zsh
+SHELL := $(shell which $$SHELL)
 CC = gcc
 MKDIR = mkdir -p
 RM = rm -rf
@@ -11,7 +11,7 @@ SOURCES := $(shell find ./src -type f -name '*.c')
 
 # Convert sources to objects (assumes obj/ mirrors src/ structure,
 # e.g., src/commands/foo.c -> obj/commands/foo.o)
-OBJECTS := $(patsubst ./src/%.c, ./obj/%.o, $(SOURCES))
+OBJECTS := $(patsubst ./src/%.c, ./build/obj/%.o, $(SOURCES))
 
 # Main target to build the executable
 build/bin/round: $(OBJECTS)
@@ -19,7 +19,7 @@ build/bin/round: $(OBJECTS)
 	$(CC) $^ -o $@ $(CFLAGS)
 
 # Pattern rule to compile each .c to .o (creates subdirs as needed)
-./obj/%.o: ./src/%.c
+./build/obj/%.o: ./src/%.c
 	$(MKDIR) $(@D)
 	$(CC) -c $< -o $@ $(CFLAGS)
 
@@ -30,4 +30,4 @@ list_sources:
 	done
 
 clean:
-	$(RM) build obj
+	$(RM) build

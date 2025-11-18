@@ -11,11 +11,18 @@ namespace Round
 	public static void Run(string code)
         {
             Dictionary<string, dynamic> variables = RoundParser.Parse(code);
-			// string functionPattern = @$"\s*(\w+)\((.*)\)";
-			foreach (var line in code.Split("\n"))
+	    // string functionPattern = @$"\s*(\w+)\((.*)\)";
+	    /* Printing lines separated by \n (new line) character
+	    foreach (var line in code.Split("\n"))
             {
                 Console.WriteLine(line);
-            }
+            } 
+	    */
+	    foreach (var vary in variables)
+	    {
+		Console.Write($"'{vary.Key}' equals to ");
+		Console.Write($"{vary.Value}\n");
+	    }
         }
         public static void RunFunction(string functionName, string? parameters)
         {
@@ -35,7 +42,7 @@ namespace Round
 	    // variablePattern groups explaination:
 	    /* First: catches variable name (one or more alphanumeric and underscore characters)
 	     * Second: catches type, like 'var_name: string'... This one is optional
-	     * Third: gets the string, integer or float in it*/
+	     * Third: gets the string, integer or float in it */
 	    string variablePattern = @$"(\w+):\s*(string|int|float)\s*=\s*({stringPattern}|\d+|\d+\.\d+)";
 
 	    MatchCollection getVariables = Regex.Matches(code, variablePattern);

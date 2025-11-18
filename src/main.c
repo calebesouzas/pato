@@ -1,11 +1,21 @@
 #include <stdio.h>
 // #include <string.h>
-#include "commands/help.h"
+#include "parser.h"
+#include "usage_guides.h"
+
+void get_round_project_config(round_file_T project_file) {
+    project_file.name = ".roundp";
+    project_file.pointer = fopen(project_file.name, "r");
+    char buffer[1024] = {0};
+    if (project_file.pointer != NULL) {
+        round_parse(buffer, sizeof(buffer), project_file);
+    }
+}
+
 
 int main(int argc, char *argv[]) {
     char version[] = "0.0.1-dev";
     FILE *p_round_file = fopen(argv[1], "r");
-    FILE *p_project_file = NULL;
 
     char buffer[1024] = {0};
     /* Here we check if the first argument for the program
@@ -27,10 +37,6 @@ int main(int argc, char *argv[]) {
 		    print_usage_guide();
 		    break;
 		case 'r':
-		    p_project_file = fopen(".roundp", "r");
-		    if (p_project_file == NULL) {
-			printf("Couldn't find '.roundp' file\n");
-		    }
 		    break;
 
 		default:

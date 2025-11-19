@@ -10,6 +10,10 @@ void get_pato_project_config() {
     char buffer[1024] = {0};
     if (project_file.pointer != NULL) {
         pato_parse(buffer, sizeof(buffer), project_file);
+    } else {
+	printf("Couldn't find '.patox' file\n");
+	printf("Be sure that you're in the root directory of your project.\n");
+	printf("Or specify the '-p' option pointing to it\n");
     }
 }
 
@@ -32,6 +36,7 @@ int main(int argc, char *argv[]) {
 	    * build
 	    * new
 	    * compile
+	    * By the way, we can use the first character as an alias 
 	    * */
 	    switch (argv[1][0]) {
 		case 'h': 

@@ -1,6 +1,5 @@
 # This file was generated (almost entirely) by Grok (an "AI")
 # I won't use code from AI, only get little helps from them if needed
-SHELL := $(shell which $$SHELL)
 CC = gcc
 MKDIR = mkdir -p
 RM = rm -rf

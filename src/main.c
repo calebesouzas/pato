@@ -3,7 +3,8 @@
 #include "parser.h"
 #include "usage_guides.h"
 
-void get_pato_project_config(pato_file_t project_file) {
+void get_pato_project_config() {
+    pato_file_t project_file;
     project_file.name = ".patox";
     project_file.pointer = fopen(project_file.name, "r");
     char buffer[1024] = {0};
@@ -37,6 +38,7 @@ int main(int argc, char *argv[]) {
 		    print_usage_guide();
 		    break;
 		case 'r':
+		    get_pato_project_config();
 		    break;
 
 		default:

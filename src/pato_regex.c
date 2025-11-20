@@ -1,8 +1,7 @@
 // #include <stdio.h>
 #include <stdio.h>
 #include <stdlib.h>
-
-
+#include <string.h>
 
 /* Function 'pato_regex_parse'
  * Param 'input' is the string to be used

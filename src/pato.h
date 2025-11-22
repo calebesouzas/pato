@@ -4,14 +4,14 @@
 #include <stdbool.h>
 
 typedef struct {
-    FILE * pointer;
-    char * name;
+  FILE * pointer;
+  char * name;
 } pato_file_t;
 
 typedef struct {
-    bool always_compile;
-    char root_dir[4096];
-    char project_name[64];
+  bool always_compile;
+  char root_dir[4096];
+  char project_name[64];
 } pato_config_t;
 
-#endif
+#endif // PATO_H
